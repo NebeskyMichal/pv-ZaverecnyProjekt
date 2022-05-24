@@ -6,20 +6,39 @@
         public static int maxX = 110;
         public static int minY = 5;
         public static int maxY = 20;
-        public static int maxEnemy = 25;
-        private static List<Enemy> currEnemy;
+        public static int maxEnemy = 100;
+        private List<Enemy> currEnemy;
         private Random rand;
         private Player player;
+        private List<BorderPiece> borders;
 
-        public static List<Enemy> CurrEnemy { get => currEnemy; set => currEnemy = value; }
+        public List<Enemy> CurrEnemy { get => currEnemy; set => currEnemy = value; }
         public Random Rand { get => rand; set => rand = value; }
         public Player Player { get => player; set => player = value; }
+        public List<BorderPiece> Borders { get => borders; set => borders = value; }
 
         public Field(Player player)
         {
             Rand = new Random();
             CurrEnemy = new List<Enemy>();
+            Borders = new List<BorderPiece>();
             this.Player = player;
+        }
+        /// <summary>
+        /// Creates borders around map so that player cant move out of bounds
+        /// </summary>
+        public void SetBorders()
+        {
+            for (int i = 0; i < 120; i++)
+            {
+                Borders.Add(new BorderPiece(i, 4));
+                Borders.Add(new BorderPiece(i, 20));
+            }
+            for (int j = 5; j < 20; j++)
+            {
+                Borders.Add(new BorderPiece(0, j));
+                Borders.Add(new BorderPiece(119, j));
+            }
         }
 
         /// <summary>
@@ -51,9 +70,39 @@
         /// </summary>
         public void EnemyMovement()
         {
-            foreach(var e in CurrEnemy)
+            int pX = Player.CurrX;
+            int pY = Player.CurrY;
+            foreach (var e in CurrEnemy)
             {
-                //Calculate distance between each enemy and player
+                int eX = e.CurrX;
+                int eY = e.CurrY;
+
+                if (pX - eX > 0 && pY - eY == 0)
+                {
+                    e.EnemyActions("right");
+                    Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                    Console.Write(player);
+                }
+                else if (pX - eX == 0 && pY - eY > 0)
+                {
+                    e.EnemyActions("down");
+                    Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                    Console.Write(player);
+
+                }
+                else if (eX - pX > 0 && eY - pY == 0)
+                {
+                    e.EnemyActions("left");
+                    Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                    Console.Write(player);
+                }
+                else if (pX - eX == 0 && pY - eY != 0)
+                {
+                    e.EnemyActions("up");
+                    Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                    Console.Write(player);
+                }
+                //Fix moving if not in line
             }
         }
     }

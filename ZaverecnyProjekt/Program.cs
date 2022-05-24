@@ -1,27 +1,22 @@
-﻿using System;
-using System.Threading;
-
-namespace ZaverecnyProjekt
+﻿namespace ZaverecnyProjekt
 {
     internal class Program
     {
         static void Main(string[] args)
-        {
-            Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
-            int currX = 60;
-            int currY = 10;
+        { 
             Player p = new Player();
-            Console.WriteLine("\n\n\n\n+----------------------------------------------------------------------------------------------------------------------+"); 
-            Console.SetCursorPosition(0, 20);
-            Console.WriteLine("+----------------------------------------------------------------------------------------------------------------------+");
-            Console.SetCursorPosition(currX, currY);
+            GUI g = new GUI();
+            g.GUI_Menu();
+            Console.ReadKey();
+            g.GUI_Game();
+            Console.SetCursorPosition(60, 10);
             Console.Write(p);
-            Field f = new Field(p);
-            
+            p.Field.SetBorders();
+            p.Field.Spawner();
             while (true)
-            {
-                f.Spawner();
+            {            
                 p.PlayerActions(Console.ReadKey(true).Key);
+                p.Field.EnemyMovement();
             }
 
         }

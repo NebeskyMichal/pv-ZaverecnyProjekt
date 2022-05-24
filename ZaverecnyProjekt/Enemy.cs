@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZaverecnyProjekt
+﻿namespace ZaverecnyProjekt
 {
     public class Enemy
     {
@@ -18,6 +12,33 @@ namespace ZaverecnyProjekt
         {
             CurrX = currX;
             CurrY = currY;
+        }
+        public void EnemyActions(string action)
+        {
+            Console.SetCursorPosition(currX+1,currY);
+            switch (action)
+            {
+                case "right":               
+                    Console.Write("\b \b");
+                    Console.SetCursorPosition(CurrX += 1, CurrY);
+                    Console.Write(this);
+                    break;
+                case "left":
+                    Console.Write("\b \b");
+                    Console.SetCursorPosition(CurrX -= 1, CurrY);
+                    Console.Write(this);
+                    break;
+                case "down":
+                    Console.Write("\b \b");
+                    Console.SetCursorPosition(CurrX, CurrY += 1);
+                    Console.Write(this);
+                    break;
+                case "up":
+                    Console.Write("\b \b");
+                    Console.SetCursorPosition(CurrX, CurrY -= 1);
+                    Console.Write(this);
+                    break;
+            }
         }
         public override string ToString()
         {
