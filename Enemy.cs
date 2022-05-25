@@ -13,6 +13,10 @@
             CurrX = currX;
             CurrY = currY;
         }
+        /// <summary>
+        /// Method that uses string instructions to move enemy icon across field, only used by Field.EnemyMovement()
+        /// </summary>
+        /// <param name="action"></param>
         public void EnemyActions(string action)
         {
             Console.SetCursorPosition(currX+1,currY);

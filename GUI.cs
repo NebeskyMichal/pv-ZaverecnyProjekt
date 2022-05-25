@@ -26,12 +26,13 @@
             Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
             Console.WriteLine("                                                    |Start new wave|                                                  \n");
+            Console.WriteLine("                                                     |Save profile|                                                  \n");
             Console.WriteLine("                                                     |Load profile|                                                  \n");
             Console.WriteLine("                                                      |Statistics|                                                  \n");
             Console.WriteLine("                                                         |Exit|                                                  \n");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n");
             Console.Write("|                                                                                                                      |");
-            Console.Write("|                     To invoke some action you can use shortened words such as start,load,stats,exit                  |");
+            Console.Write("|                To invoke some action you can use shortened words such as start,save,load,stats,exit                  |");
             Console.Write("|                                                                                                                      |");
             Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
             Console.SetCursorPosition(58, 17);

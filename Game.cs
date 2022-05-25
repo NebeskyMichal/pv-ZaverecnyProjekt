@@ -55,6 +55,9 @@
                             p.Field.EnemyMovement();
                         }
                         break;
+                    case "save":
+
+                        break;
                     case "load":
 
                         break;
@@ -71,6 +74,7 @@
                         }
                         break;
                     case "exit":
+                        IsPlaying = false;
                         break;
                 }
             }
