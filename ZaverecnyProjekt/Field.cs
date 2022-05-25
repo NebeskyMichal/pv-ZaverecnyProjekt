@@ -2,11 +2,11 @@
 {
     public class Field
     {
-        public static int minX = 5;
-        public static int maxX = 110;
+        public static int minX = 1;
+        public static int maxX = 119;
         public static int minY = 5;
         public static int maxY = 20;
-        public static int maxEnemy = 100;
+        public static int maxEnemy = 40;
         private List<Enemy> currEnemy;
         private Random rand;
         private Player player;
@@ -96,13 +96,75 @@
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
-                else if (pX - eX == 0 && pY - eY != 0)
+                else if (pX - eX == 0 && eY - pY > 0)
                 {
                     e.EnemyActions("up");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
-                //Fix moving if not in line
+                else
+                {
+                    if (pX <= 60 && pY <= 20)
+                    {
+                        if (eX != 1)
+                        {
+                            e.EnemyActions("left");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                        else if (eX != 1 && eY > 5)
+                        {
+                            e.EnemyActions("up");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                    else if (pX <= 60 && pY >= 20)
+                    {
+                        if (eX != 1)
+                        {
+                            e.EnemyActions("left");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                        else
+                        {
+                            e.EnemyActions("down");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                    else if (pX >= 60 && pY <= 20)
+                    {
+                        if (eX != 118)
+                        {
+                            e.EnemyActions("right");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                        else if (eX != 118 && eY > 5)
+                        {
+                            e.EnemyActions("up");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                    else if (pX >= 60 && pY >= 20)
+                    {
+                        if (eX != 119)
+                        {
+                            e.EnemyActions("right");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                        else if (eX != 120 && eY < 25)
+                        {
+                            e.EnemyActions("down");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                }
             }
         }
     }
