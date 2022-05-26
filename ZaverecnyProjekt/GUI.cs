@@ -141,7 +141,7 @@
             Console.SetCursorPosition(20, 2);
             Console.Write("Player: " + PlayerName);
             Console.SetCursorPosition(55, 2);
-            Console.Write("Health: " + PlayerHealth);
+            Console.Write("Health: " + health);
             Console.SetCursorPosition(95, 2);
             Console.Write("Wave: " + Wave);
             Console.SetCursorPosition(119, 2);
