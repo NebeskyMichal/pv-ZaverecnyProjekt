@@ -73,7 +73,7 @@
         {
             int pX = Player.CurrX;
             int pY = Player.CurrY;
-            for(int i = 0; i<CurrEnemy.Count; i++)
+            for (int i = 0; i < CurrEnemy.Count; i++)
             {
                 int eX = CurrEnemy[i].CurrX;
                 int eY = CurrEnemy[i].CurrY;
@@ -167,19 +167,22 @@
                     }
                 }
                 BombCheck(CurrEnemy[i]);
-                if(eX == pX && eY == pY)
+                if (eX == pX && eY == pY)
                 {
-                    Player.Health--; 
-                    CurrEnemy.Remove(CurrEnemy[i]);                    
+                    Player.Health--;
+                    CurrEnemy.Remove(CurrEnemy[i]);
                 }
             }
         }
-
+        /// <summary>
+        /// Method that checks for bomb placement, if enemy and bomb connects remove both
+        /// </summary>
+        /// <param name="e"></param>
         public void BombCheck(Enemy e)
         {
-            for(int j = 0; j<Player.PlacedBombs.Count; j++)
+            for (int j = 0; j < Player.PlacedBombs.Count; j++)
             {
-                if (e.CurrX == Player.PlacedBombs[j].CurrX  && e.CurrY == Player.PlacedBombs[j].CurrY)
+                if (e.CurrX == Player.PlacedBombs[j].CurrX && e.CurrY == Player.PlacedBombs[j].CurrY)
                 {
                     CurrEnemy.Remove(e);
                     Player.PlacedBombs.Remove(Player.PlacedBombs[j]);

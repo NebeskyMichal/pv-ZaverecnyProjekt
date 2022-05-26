@@ -12,7 +12,7 @@
         public Game(string playerName)
         {
             Player = new Player(playerName);
-            Gui = new GUI(0,Player);
+            Gui = new GUI(0, Player);
             IsPlaying = true;
         }
 
@@ -57,14 +57,15 @@
                             Player.PlayerActions(Console.ReadKey(true).Key);
                             Player.Field.EnemyMovement();
                         }
-                        if(Player.Health > 0)
+                        if (Player.Health > 0)
                         {
                             Gui.Wave++;
                             Player.Field.MaxEnemy += 5;
+                            Player.MaxBombs++;
                         }
                         break;
                     case "save":
-
+                        
                         break;
                     case "load":
 
@@ -72,6 +73,18 @@
                     case "stats":
                         instanceCheck = true;
                         Gui.GUI_Stats();
+                        while (instanceCheck)
+                        {
+                            string playerInput1 = Console.ReadLine();
+                            if (playerInput1 == "exit")
+                            {
+                                instanceCheck = false;
+                            }
+                        }
+                        break;
+                    case "help":
+                        instanceCheck = true;
+                        Gui.GUI_Help();
                         while (instanceCheck)
                         {
                             string playerInput1 = Console.ReadLine();

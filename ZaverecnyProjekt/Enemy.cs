@@ -19,10 +19,10 @@
         /// <param name="action"></param>
         public void EnemyActions(string action)
         {
-            Console.SetCursorPosition(currX+1,currY);
+            Console.SetCursorPosition(currX + 1, currY);
             switch (action)
             {
-                case "right":               
+                case "right":
                     Console.Write("\b \b");
                     Console.SetCursorPosition(CurrX += 1, CurrY);
                     Console.Write(this);
