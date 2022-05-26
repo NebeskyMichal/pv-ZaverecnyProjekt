@@ -3,17 +3,19 @@
     public class GUI
     {
         private string playerName;
-        private int playerHealth;
+        private Player player;
         private int wave;
+        private int playerHealth;
 
         public string PlayerName { get => playerName; set => playerName = value; }
         public int PlayerHealth { get => playerHealth; set => playerHealth = value; }
         public int Wave { get => wave; set => wave = value; }
+        public Player Player { get => player; set => player = value; }
 
-        public GUI(string playerName, int playerHealth, int wave)
+        public GUI(int wave, Player player)
         {
-            PlayerName = playerName;
-            PlayerHealth = playerHealth;
+            PlayerName = player.Name;
+            PlayerHealth = player.Health;
             Wave = wave;
         }
 
@@ -79,6 +81,12 @@
             Console.Write("|                                                                                                                      |");
             Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
             Console.SetCursorPosition(58, 17);
+        }
+
+        public void GUI_Refresh(int health)
+        {
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|                Player:" + PlayerName + "                      Health: " + health + "                   Wave: " + Wave + "                                 |");
         }
     }
 }

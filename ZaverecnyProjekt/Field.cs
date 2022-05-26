@@ -6,7 +6,7 @@
         public static int maxX = 119;
         public static int minY = 5;
         public static int maxY = 20;
-        public static int maxEnemy = 40;
+        private int maxEnemy = 5;
         private List<Enemy> currEnemy;
         private Random rand;
         private Player player;
@@ -16,6 +16,7 @@
         public Random Rand { get => rand; set => rand = value; }
         public Player Player { get => player; set => player = value; }
         public List<BorderPiece> Borders { get => borders; set => borders = value; }
+        public int MaxEnemy { get => maxEnemy; set => maxEnemy = value; }
 
         public Field(Player player)
         {
@@ -58,7 +59,7 @@
         /// </summary>
         public void Spawner()
         {
-            while (CurrEnemy.Count < maxEnemy)
+            while (CurrEnemy.Count < MaxEnemy)
             {
                 Thread t = new Thread(SpawnEnemy);
                 t.Start();
@@ -72,33 +73,33 @@
         {
             int pX = Player.CurrX;
             int pY = Player.CurrY;
-            foreach (var e in CurrEnemy)
+            for(int i = 0; i<CurrEnemy.Count; i++)
             {
-                int eX = e.CurrX;
-                int eY = e.CurrY;
+                int eX = CurrEnemy[i].CurrX;
+                int eY = CurrEnemy[i].CurrY;
 
                 if (pX - eX > 0 && pY - eY == 0)
                 {
-                    e.EnemyActions("right");
+                    CurrEnemy[i].EnemyActions("right");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
                 else if (pX - eX == 0 && pY - eY > 0)
                 {
-                    e.EnemyActions("down");
+                    CurrEnemy[i].EnemyActions("down");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
 
                 }
                 else if (eX - pX > 0 && eY - pY == 0)
                 {
-                    e.EnemyActions("left");
+                    CurrEnemy[i].EnemyActions("left");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
                 else if (pX - eX == 0 && eY - pY > 0)
                 {
-                    e.EnemyActions("up");
+                    CurrEnemy[i].EnemyActions("up");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
@@ -108,13 +109,13 @@
                     {
                         if (eX != 1)
                         {
-                            e.EnemyActions("left");
+                            CurrEnemy[i].EnemyActions("left");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 1 && eY > 5)
                         {
-                            e.EnemyActions("up");
+                            CurrEnemy[i].EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -123,13 +124,13 @@
                     {
                         if (eX != 1)
                         {
-                            e.EnemyActions("left");
+                            CurrEnemy[i].EnemyActions("left");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else
                         {
-                            e.EnemyActions("down");
+                            CurrEnemy[i].EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -138,13 +139,13 @@
                     {
                         if (eX != 118)
                         {
-                            e.EnemyActions("right");
+                            CurrEnemy[i].EnemyActions("right");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 118 && eY > 5)
                         {
-                            e.EnemyActions("up");
+                            CurrEnemy[i].EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -153,17 +154,35 @@
                     {
                         if (eX != 119)
                         {
-                            e.EnemyActions("right");
+                            CurrEnemy[i].EnemyActions("right");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 120 && eY < 25)
                         {
-                            e.EnemyActions("down");
+                            CurrEnemy[i].EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                     }
+                }
+                BombCheck(CurrEnemy[i]);
+                if(eX == pX && eY == pY)
+                {
+                    Player.Health--; 
+                    CurrEnemy.Remove(CurrEnemy[i]);                    
+                }
+            }
+        }
+
+        public void BombCheck(Enemy e)
+        {
+            for(int j = 0; j<Player.PlacedBombs.Count; j++)
+            {
+                if (e.CurrX == Player.PlacedBombs[j].CurrX  && e.CurrY == Player.PlacedBombs[j].CurrY)
+                {
+                    CurrEnemy.Remove(e);
+                    Player.PlacedBombs.Remove(Player.PlacedBombs[j]);
                 }
             }
         }

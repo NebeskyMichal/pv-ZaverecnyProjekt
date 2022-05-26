@@ -2,18 +2,17 @@
 {
     public class Game
     {
-        private string playerName;
         private GUI gui;
         private bool isPlaying;
-
-        public string PlayerName { get => playerName; set => playerName = value; }
+        private Player player;
         public GUI Gui { get => gui; set => gui = value; }
         public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
+        public Player Player { get => player; set => player = value; }
 
         public Game(string playerName)
         {
-            PlayerName = playerName;
-            Gui = new GUI(playerName, 3, 0);
+            Player = new Player(playerName);
+            Gui = new GUI(0,Player);
             IsPlaying = true;
         }
 
@@ -24,7 +23,6 @@
         {
             string playerInput = "";
             bool instanceCheck = true;
-            Player p = new Player();
             while (IsPlaying)
             {
                 bool inputCheck = true;
@@ -45,14 +43,24 @@
                 switch (playerInput)
                 {
                     case "start":
-                        instanceCheck = true;
+                        Console.Write("\b \b");
+                        Player.CurrX = 60;
+                        Player.CurrY = 10;
+                        Console.Write(Player);
+                        Player.Health = 3;
                         Gui.GUI_Game();
-                        p.Field.Spawner();
-                        p.Field.SetBorders();
-                        while (instanceCheck)
+                        Player.Field.Spawner();
+                        Player.Field.SetBorders();
+                        while (Player.Health > 0 && Player.Field.CurrEnemy.Count > 0)
                         {
-                            p.PlayerActions(Console.ReadKey(true).Key);
-                            p.Field.EnemyMovement();
+                            Gui.GUI_Refresh(Player.Health);
+                            Player.PlayerActions(Console.ReadKey(true).Key);
+                            Player.Field.EnemyMovement();
+                        }
+                        if(Player.Health > 0)
+                        {
+                            Gui.Wave++;
+                            Player.Field.MaxEnemy += 5;
                         }
                         break;
                     case "save":
