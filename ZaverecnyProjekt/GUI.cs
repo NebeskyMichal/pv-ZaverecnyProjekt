@@ -90,7 +90,16 @@
             Console.Clear();
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
             Console.Write("|                                                                                                                      |");
-            Console.Write("\n|                Player:" + PlayerName + "                      Health: " + PlayerHealth + "                   Wave: " + Wave + "                                 |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|");
             Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
             Console.WriteLine("                                                      |Statistics|                                                  \n");

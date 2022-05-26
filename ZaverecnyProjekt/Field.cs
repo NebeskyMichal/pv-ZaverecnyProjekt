@@ -143,7 +143,7 @@
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
-                        else if (eX != 118 && eY > 5)
+                        else if (eX != 118 && eY > 5 && eY < 10)
                         {
                             CurrEnemy[i].EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
@@ -158,7 +158,7 @@
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
-                        else if (eX != 120 && eY < 25)
+                        else if (eX != 120 && eY < 25 &&eY > 10)
                         {
                             CurrEnemy[i].EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
@@ -169,7 +169,7 @@
                 BombCheck(CurrEnemy[i]);
                 if (eX == pX && eY == pY)
                 {
-                    Player.Health--;
+                    Player.Health-=1;
                     CurrEnemy.Remove(CurrEnemy[i]);
                 }
             }

@@ -12,7 +12,7 @@
         public Game(string playerName)
         {
             Player = new Player(playerName);
-            Gui = new GUI(0, Player);
+            Gui = new GUI(1, Player);
             IsPlaying = true;
         }
 
@@ -53,9 +53,10 @@
                         Player.Field.SetBorders();
                         while (Player.Health > 0 && Player.Field.CurrEnemy.Count > 0)
                         {
-                            Gui.GUI_Refresh(Player.Health);
                             Player.PlayerActions(Console.ReadKey(true).Key);
                             Player.Field.EnemyMovement();
+                            Gui.GUI_Refresh(Player.Health);
+
                         }
                         if (Player.Health > 0)
                         {
@@ -65,7 +66,7 @@
                         }
                         break;
                     case "save":
-                        
+
                         break;
                     case "load":
 
@@ -80,6 +81,7 @@
                             {
                                 instanceCheck = false;
                             }
+                            Gui.GUI_Stats();
                         }
                         break;
                     case "help":
@@ -92,6 +94,7 @@
                             {
                                 instanceCheck = false;
                             }
+                            Gui.GUI_Help(); 
                         }
                         break;
                     case "exit":
