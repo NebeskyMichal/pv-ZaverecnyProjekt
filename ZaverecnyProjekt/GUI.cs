@@ -24,8 +24,16 @@
             Console.Clear();
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
             Console.Write("|                                                                                                                      |");
-            Console.Write("\n|                Player:"+PlayerName+"                       Health: "+PlayerHealth+"                   Wave: "+Wave+"                               |");
-            Console.Write("|                                                                                                                      |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|"); Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
             Console.WriteLine("                                                    |Start new wave|                                                  \n");
             Console.WriteLine("                                                     |Save profile|                                                  \n");
@@ -45,7 +53,16 @@
             Console.Clear();
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
             Console.Write("|                                                                                                                      |");
-            Console.Write("\n|                Player:" + PlayerName + "                      Health: " + PlayerHealth + "                   Wave: " + Wave + "                                 |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " +PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119,2);
+            Console.Write("|");
             Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
             for(int i = 5; i <20; i++)
@@ -86,7 +103,15 @@
         public void GUI_Refresh(int health)
         {
             Console.SetCursorPosition(0, 2);
-            Console.Write("|                Player:" + PlayerName + "                      Health: " + health + "                   Wave: " + Wave + "                                 |");
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|");
         }
     }
 }
