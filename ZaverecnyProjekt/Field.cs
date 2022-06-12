@@ -6,7 +6,7 @@
         public static int maxX = 119;
         public static int minY = 5;
         public static int maxY = 20;
-        private int maxEnemy = 5;
+        private int maxEnemy = 10;
         private List<Enemy> currEnemy;
         private Random rand;
         private Player player;
@@ -69,10 +69,10 @@
         /// <summary>
         /// Method for moving enemies towards player in console
         /// </summary>
-        public void EnemyMovement()
+        public void EnemyMovement(int plX, int plY)
         {
-            int pX = Player.CurrX;
-            int pY = Player.CurrY;
+            int pX = plX;
+            int pY = plY;
             for (int i = 0; i < CurrEnemy.Count; i++)
             {
                 int eX = CurrEnemy[i].CurrX;
@@ -105,7 +105,36 @@
                 }
                 else
                 {
-                    if (pX <= 60 && pY <= 20)
+                    if(pX < 60 && eX >= 60)
+                    {
+                        if (pY < 10 && eY >= 10)
+                        {
+                            CurrEnemy[i].EnemyActions("up");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }else if(pY > 10 && eY < 10)
+                        {
+                            CurrEnemy[i].EnemyActions("down");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                    else if(pX >= 60 && eX < 60)
+                    {
+                          if (pY < 10 && eY >= 10) 
+                        {
+                            CurrEnemy[i].EnemyActions("up");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                        else if (pY > 10 && eY < 10)
+                        {
+                            CurrEnemy[i].EnemyActions("down");
+                            Console.SetCursorPosition(Player.CurrX, Player.CurrY);
+                            Console.Write(player);
+                        }
+                    }
+                   if (pX <= 60 && pY <= 20)
                     {
                         if (eX != 1)
                         {
@@ -163,7 +192,7 @@
                             CurrEnemy[i].EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
-                        }
+                       }
                     }
                 }
                 BombCheck(CurrEnemy[i]);
@@ -171,6 +200,7 @@
                 {
                     Player.Health-=1;
                     CurrEnemy.Remove(CurrEnemy[i]);
+                    Player.PlayerStats.Kills_total++;
                 }
             }
         }
@@ -186,6 +216,7 @@
                 {
                     CurrEnemy.Remove(e);
                     Player.PlacedBombs.Remove(Player.PlacedBombs[j]);
+                    Player.PlayerStats.Kills_total++;
                 }
             }
         }
