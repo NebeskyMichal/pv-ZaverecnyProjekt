@@ -102,8 +102,8 @@
             Console.Write("|");
             Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
-            Console.WriteLine("                                                 |Statistics for "+p.Name +"|                                                  ");
-            Console.WriteLine("                                                     |Longest run:"+p.Longest_run+"|                                                 \n");
+            Console.WriteLine("                                                 |Statistics for " + p.Name + "|                                                  ");
+            Console.WriteLine("                                                     |Longest run:" + p.Longest_run + "|                                                 \n");
             Console.WriteLine("                                                     |Kills total:" + p.Kills_total + "|                                                 \n");
             Console.WriteLine("                                                     |Deaths total:" + p.Deaths_total + "|                                                 \n");
             Console.WriteLine("                                                     |Bombs placed:" + p.Bombs_placed + "|                                                 \n");

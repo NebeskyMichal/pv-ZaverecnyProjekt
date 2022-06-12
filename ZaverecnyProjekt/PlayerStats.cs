@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZaverecnyProjekt
+﻿namespace ZaverecnyProjekt
 {
     public class PlayerStats
     {
@@ -20,14 +14,15 @@ namespace ZaverecnyProjekt
         public int Bombs_placed { get => bombs_placed; set => bombs_placed = value; }
         public string Name { get => name; set => name = value; }
 
-        public PlayerStats() {
+        public PlayerStats()
+        {
             Longest_run = 1;
         }
-        public PlayerStats(string name,int run,int kill, int death, int bomb)
+        public PlayerStats(string name, int run, int kill, int death, int bomb)
         {
             Name = name;
             Longest_run = run;
-            Kills_total = kill; 
+            Kills_total = kill;
             Deaths_total = death;
             Bombs_placed = bomb;
         }

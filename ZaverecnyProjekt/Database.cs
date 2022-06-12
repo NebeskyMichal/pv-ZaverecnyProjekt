@@ -18,7 +18,7 @@ namespace ZaverecnyProjekt
             Ini = new IniFile("config.ini");
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            if(Ini.IniReadValue("Database","connectionString").Length != 0)
+            if (Ini.IniReadValue("Database", "connectionString").Length != 0)
             {
                 connectionStringsSection.ConnectionStrings["sqlServer"].ConnectionString = Ini.IniReadValue("Database", "connectionString");
                 config.Save();
@@ -32,12 +32,13 @@ namespace ZaverecnyProjekt
                     try
                     {
                         connection = new SqlConnection(cs.ConnectionString);
-                    }catch(Exception e)
+                    }
+                    catch (Exception e)
                     {
                         Console.Write("Fix your connection string in config.ini located in .\\ZaverecnyProjekt\\bin\\Debug\\net6.0");
                         Console.ReadLine();
                         Environment.Exit(75979);
-                    }               
+                    }
                 }
                 try
                 {
@@ -133,6 +134,6 @@ namespace ZaverecnyProjekt
             }
         }
 
-        
+
     }
 }

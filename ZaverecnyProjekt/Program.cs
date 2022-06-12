@@ -19,7 +19,18 @@ namespace ZaverecnyProjekt
                 try
                 {
                     username = Console.ReadLine();
-                    check = false;
+                    if(username.Length > 20)
+                    {
+                        Console.WriteLine("Username is too long\nIt needs to be under 20 letters");
+                    }
+                    else if(username.Length <= 0)
+                    {
+                        Console.WriteLine("Username is too short or blank\nIt needs to be more than 0 letters");
+                    }
+                    else
+                    {
+                        check = false;
+                    }
                 }
                 catch (Exception e)
                 {

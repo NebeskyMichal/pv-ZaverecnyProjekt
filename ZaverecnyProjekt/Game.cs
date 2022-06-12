@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Configuration;
 using ZaverecnyProjekt.lib;
 
 namespace ZaverecnyProjekt
@@ -12,12 +11,14 @@ namespace ZaverecnyProjekt
         private Database database;
         private IniFile ini;
         private int multiplier;
+        private int restoreHP;
         public GUI Gui { get => gui; set => gui = value; }
         public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
         public Player Player { get => player; set => player = value; }
         public Database Database { get => database; set => database = value; }
         public IniFile Ini { get => ini; set => ini = value; }
         public int Multiplier { get => multiplier; set => multiplier = value; }
+        public int RestoreHP { get => restoreHP; set => restoreHP = value; }
 
         public Game(string playerName)
         {
@@ -44,6 +45,8 @@ namespace ZaverecnyProjekt
             Player.Health = Int32.Parse(Ini.IniReadValue("Game", "player_health"));
             Player.MaxBombs = Int32.Parse(Ini.IniReadValue("Game", "max_bombs"));
             Gui.PlayerHealth = Player.Health;
+            RestoreHP = Player.Health;
+            Player.Field.MaxEnemy = Gui.Wave * Multiplier;
         }
 
         /// <summary>
@@ -79,26 +82,38 @@ namespace ZaverecnyProjekt
                         Player.CurrX = 60;
                         Player.CurrY = 10;
                         Console.Write(Player);
+                        Player.Health = restoreHP;
                         Gui.GUI_Game();
                         Player.Field.Spawner();
                         Player.Field.SetBorders();
                         while (Player.Health > 0 && Player.Field.CurrEnemy.Count > 0)
                         {
                             Player.PlayerActions(Console.ReadKey(true).Key);
-                            Player.Field.EnemyMovement(Player.CurrX,Player.CurrY);
+                            Player.Field.EnemyMovement(Player.CurrX, Player.CurrY);
                             Gui.GUI_Refresh(Player.Health);
 
                         }
                         if (Player.Health > 0)
                         {
                             Gui.Wave++;
-                            Player.Field.MaxEnemy += 5;
+                            Player.Field.MaxEnemy += Multiplier;
                             Player.MaxBombs++;
-                            Player.PlayerStats.Longest_run = Gui.Wave;
+                            if(Player.PlayerStats.Longest_run < Gui.Wave)
+                            {
+                                Player.PlayerStats.Longest_run = Gui.Wave;
+                            }
                         }
                         else
                         {
+                            if (Gui.Wave != 1)
+                            {
+                                Gui.Wave--;
+                            }
                             Player.PlayerStats.Deaths_total++;
+                            if(Player.Field.MaxEnemy > 5)
+                            {
+                                Player.Field.MaxEnemy -= Multiplier;
+                            }
                         }
                         Player.Field.CurrEnemy.Clear();
                         break;
@@ -124,9 +139,9 @@ namespace ZaverecnyProjekt
                         bool playerSearch = true;
                         while (playerSearch)
                         {
-                            
+
                             string playerName = Console.ReadLine();
-                            if(playerName == "exit")
+                            if (playerName == "exit")
                             {
                                 instanceCheck = false;
                                 playerSearch = false;
@@ -139,7 +154,7 @@ namespace ZaverecnyProjekt
                                 Gui.GUI_Stats(tempData[0]);
                                 playerSearch = false;
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 Gui.GUI_Search();
                             }
@@ -151,12 +166,12 @@ namespace ZaverecnyProjekt
                         Gui.GUI_Help();
                         while (instanceCheck)
                         {
-                             playerInput1 = Console.ReadLine();
+                            playerInput1 = Console.ReadLine();
                             if (playerInput1 == "exit")
                             {
                                 instanceCheck = false;
                             }
-                            Gui.GUI_Help(); 
+                            Gui.GUI_Help();
                         }
                         break;
                     case "exit":
