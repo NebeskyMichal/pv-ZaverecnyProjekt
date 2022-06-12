@@ -178,6 +178,38 @@
             Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
             Console.SetCursorPosition(58, 15);
         }
+        /// <summary>
+        /// After level GUI
+        /// </summary>
+        public void GUI_Afterlevel(int wave_number, int bombs_placed, int enemy_kills)
+        {
+            Console.Clear();
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
+            Console.Write("|                                                                                                                      |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|"); Console.Write("|                                                                                                                      |");
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
+            Console.WriteLine("                                          !!!Congratulations you completed!!!                                          \n");
+            Console.WriteLine("                                            Wave  No. "+wave_number + "                                           \n");
+            Console.WriteLine("                                            You killed "+ enemy_kills + " Enemies                                 \n");
+            Console.WriteLine("                                            You placed " + bombs_placed + " Bombs                                 \n");
+            Console.WriteLine("                                                                                                                    \n");
+            Console.WriteLine("                                                 |Enter to continue|                                               \n");
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n");
+            Console.Write("|                                                                                                                      |");
+            Console.Write("|                     To invoke some action you can use shortened words such as start,load,stats,exit                  |");
+            Console.Write("|                                                                                                                      |");
+            Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
+            Console.SetCursorPosition(58, 15);
+        }
 
         /// <summary>
         /// Method that refreshes second line in GUI

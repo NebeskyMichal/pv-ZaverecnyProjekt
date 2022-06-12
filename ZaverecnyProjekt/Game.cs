@@ -76,9 +76,11 @@ namespace ZaverecnyProjekt
                         Gui.GUI_Menu();
                     }
                 }
+                Player.BombsOnLevel = 0;
                 switch (playerInput)
                 {
                     case "start":
+                        
                         Console.Write("\b \b");
                         Player.CurrX = 60;
                         Player.CurrY = 10;
@@ -103,6 +105,8 @@ namespace ZaverecnyProjekt
                             {
                                 Player.PlayerStats.Longest_run = Gui.Wave;
                             }
+                            Gui.GUI_Afterlevel(Gui.Wave - 1, Player.BombsOnLevel, Player.Field.MaxEnemy - Multiplier);
+                            Console.ReadLine();
                         }
                         else
                         {

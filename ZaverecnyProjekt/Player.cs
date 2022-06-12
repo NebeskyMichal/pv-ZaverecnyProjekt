@@ -13,6 +13,7 @@
         private bool canPlace;
         private string name;
         private PlayerStats playerStats;
+        private int bombsOnLevel;
 
         public Field Field { get => field; set => field = value; }
         public int Health { get => health; set => health = value; }
@@ -24,6 +25,7 @@
         public bool CanPlace { get => canPlace; set => canPlace = value; }
         public string Name { get => name; set => name = value; }
         public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
+        public int BombsOnLevel { get => bombsOnLevel; set => bombsOnLevel = value; }
 
         public Player(string name)
         {
@@ -37,6 +39,7 @@
             Field = new Field(this);
             Name = name;
             PlayerStats = new PlayerStats();
+            BombsOnLevel = 0;
         }
         /// <summary>
         /// Method used for moving player in console using arrow keys and calling method PlaceBomb() using spacebar
@@ -156,6 +159,7 @@
                     Console.SetCursorPosition(CurrX + 1, CurrY);
                 }
                 PlayerStats.Bombs_placed++;
+                BombsOnLevel++;
             }
         }
 
