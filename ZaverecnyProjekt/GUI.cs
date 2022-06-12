@@ -40,11 +40,12 @@
             Console.WriteLine("                                                    |Start new wave|                                                  \n");
             Console.WriteLine("                                                     |Save profile|                                                  \n");
             Console.WriteLine("                                                      |Statistics|                                                  \n");
+            Console.WriteLine("                                                     |Search player|                                                  \n");
             Console.WriteLine("                                                         |Help|                                                  \n");
             Console.WriteLine("                                                         |Exit|                                                  \n");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n");
             Console.Write("|                                                                                                                      |");
-            Console.Write("|           To invoke some action you can use shortened words such as start,save,load,stats,help,exit                  |");
+            Console.Write("|           To invoke some action you can use shortened words such as start,save,stats,search,help,exit                |");
             Console.Write("|                                                                                                                      |");
             Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
             Console.SetCursorPosition(58, 17);
@@ -101,7 +102,7 @@
             Console.Write("|");
             Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
-            Console.WriteLine("                                                      |Statistics|                                                  \n");
+            Console.WriteLine("                                                 |Statistics for "+p.Name +"|                                                  ");
             Console.WriteLine("                                                     |Longest run:"+p.Longest_run+"|                                                 \n");
             Console.WriteLine("                                                     |Kills total:" + p.Kills_total + "|                                                 \n");
             Console.WriteLine("                                                     |Deaths total:" + p.Deaths_total + "|                                                 \n");
@@ -123,8 +124,16 @@
             Console.Clear();
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
             Console.Write("|                                                                                                                      |");
-            Console.Write("\n|                Player:" + PlayerName + "                      Health: " + PlayerHealth + "                   Wave: " + Wave + "                                 |");
-            Console.Write("|                                                                                                                      |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|"); Console.Write("|                                                                                                                      |");
             Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
             Console.WriteLine("                                                 You are the player (X)                                          \n");
             Console.WriteLine("                                           Your task is to kill all enemies (Q)                                  \n");
@@ -138,6 +147,36 @@
             Console.Write("|                                                                                                                      |");
             Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
             Console.SetCursorPosition(58, 17);
+        }
+
+        public void GUI_Search()
+        {
+            Console.Clear();
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+");
+            Console.Write("|                                                                                                                      |");
+            Console.SetCursorPosition(0, 2);
+            Console.Write("|");
+            Console.SetCursorPosition(20, 2);
+            Console.Write("Player: " + PlayerName);
+            Console.SetCursorPosition(55, 2);
+            Console.Write("Health: " + PlayerHealth);
+            Console.SetCursorPosition(95, 2);
+            Console.Write("Wave: " + Wave);
+            Console.SetCursorPosition(119, 2);
+            Console.Write("|"); Console.Write("|                                                                                                                      |");
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n\n");
+            Console.WriteLine("                                                 Insert player name                                          \n");
+            Console.WriteLine("                                            you wish to see the statistics of                                 \n");
+            Console.WriteLine("                                                                                                                                   \n");
+            Console.WriteLine("                                                                                                                               \n");
+            Console.WriteLine("                                                                                                                                  \n");
+            Console.WriteLine("                                                         |Exit|                                                  \n");
+            Console.Write("+----------------------------------------------------------------------------------------------------------------------+\n");
+            Console.Write("|                                                                                                                      |");
+            Console.Write("|                     To invoke some action you can use shortened words such as start,load,stats,exit                  |");
+            Console.Write("|                                                                                                                      |");
+            Console.Write("\n+----------------------------------------------------------------------------------------------------------------------+");
+            Console.SetCursorPosition(58, 15);
         }
 
         /// <summary>

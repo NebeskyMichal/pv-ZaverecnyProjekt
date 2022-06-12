@@ -132,5 +132,7 @@ namespace ZaverecnyProjekt
                 command.ExecuteNonQuery();
             }
         }
+
+        
     }
 }

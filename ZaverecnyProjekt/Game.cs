@@ -53,6 +53,7 @@ namespace ZaverecnyProjekt
         {
             Loading();
             string playerInput = "";
+            string playerInput1 = "";
             bool instanceCheck = true;
             while (IsPlaying)
             {
@@ -109,7 +110,7 @@ namespace ZaverecnyProjekt
                         Gui.GUI_Stats(Player.PlayerStats);
                         while (instanceCheck)
                         {
-                            string playerInput1 = Console.ReadLine();
+                            playerInput1 = Console.ReadLine();
                             if (playerInput1 == "exit")
                             {
                                 instanceCheck = false;
@@ -117,12 +118,40 @@ namespace ZaverecnyProjekt
                             Gui.GUI_Stats(Player.PlayerStats);
                         }
                         break;
+                    case "search":
+                        instanceCheck = true;
+                        Gui.GUI_Search();
+                        bool playerSearch = true;
+                        while (playerSearch)
+                        {
+                            
+                            string playerName = Console.ReadLine();
+                            if(playerName == "exit")
+                            {
+                                instanceCheck = false;
+                                playerSearch = false;
+                                break;
+                            }
+                            string jsonData = Database.PlayerLoad(playerName);
+                            try
+                            {
+                                var tempData = JsonConvert.DeserializeObject<List<PlayerStats>>(jsonData);
+                                Gui.GUI_Stats(tempData[0]);
+                                playerSearch = false;
+                            }
+                            catch(Exception e)
+                            {
+                                Gui.GUI_Search();
+                            }
+                            Console.ReadLine();
+                        }
+                        break;
                     case "help":
                         instanceCheck = true;
                         Gui.GUI_Help();
                         while (instanceCheck)
                         {
-                            string playerInput1 = Console.ReadLine();
+                             playerInput1 = Console.ReadLine();
                             if (playerInput1 == "exit")
                             {
                                 instanceCheck = false;
