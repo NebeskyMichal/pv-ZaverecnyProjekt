@@ -75,31 +75,32 @@
             int pY = plY;
             for (int i = 0; i < CurrEnemy.Count; i++)
             {
-                int eX = CurrEnemy[i].CurrX;
-                int eY = CurrEnemy[i].CurrY;
+                Enemy e = CurrEnemy[i];
+                int eX = e.CurrX;
+                int eY = e.CurrY;
 
                 if (pX - eX > 0 && pY - eY == 0)
                 {
-                    CurrEnemy[i].EnemyActions("right");
+                    e.EnemyActions("right");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
                 else if (pX - eX == 0 && pY - eY > 0)
                 {
-                    CurrEnemy[i].EnemyActions("down");
+                    e.EnemyActions("down");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
 
                 }
                 else if (eX - pX > 0 && eY - pY == 0)
                 {
-                    CurrEnemy[i].EnemyActions("left");
+                    e.EnemyActions("left");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
                 else if (pX - eX == 0 && eY - pY > 0)
                 {
-                    CurrEnemy[i].EnemyActions("up");
+                    e.EnemyActions("up");
                     Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                     Console.Write(player);
                 }
@@ -109,12 +110,12 @@
                     {
                         if (pY < 10 && eY >= 10)
                         {
-                            CurrEnemy[i].EnemyActions("up");
+                            e.EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }else if(pY > 10 && eY < 10)
                         {
-                            CurrEnemy[i].EnemyActions("down");
+                            e.EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -123,13 +124,13 @@
                     {
                           if (pY < 10 && eY >= 10) 
                         {
-                            CurrEnemy[i].EnemyActions("up");
+                            e.EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (pY > 10 && eY < 10)
                         {
-                            CurrEnemy[i].EnemyActions("down");
+                            e.EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -138,13 +139,13 @@
                     {
                         if (eX != 1)
                         {
-                            CurrEnemy[i].EnemyActions("left");
+                            e.EnemyActions("left");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 1 && eY > 5)
                         {
-                            CurrEnemy[i].EnemyActions("up");
+                            e.EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -153,13 +154,13 @@
                     {
                         if (eX != 1)
                         {
-                            CurrEnemy[i].EnemyActions("left");
+                            e.EnemyActions("left");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else
                         {
-                            CurrEnemy[i].EnemyActions("down");
+                            e.EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -168,13 +169,13 @@
                     {
                         if (eX != 118)
                         {
-                            CurrEnemy[i].EnemyActions("right");
+                            e.EnemyActions("right");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 118 && eY > 5 && eY < 10)
                         {
-                            CurrEnemy[i].EnemyActions("up");
+                            e.EnemyActions("up");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
@@ -183,23 +184,23 @@
                     {
                         if (eX != 119)
                         {
-                            CurrEnemy[i].EnemyActions("right");
+                            e.EnemyActions("right");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                         }
                         else if (eX != 120 && eY < 25 &&eY > 10)
                         {
-                            CurrEnemy[i].EnemyActions("down");
+                            e.EnemyActions("down");
                             Console.SetCursorPosition(Player.CurrX, Player.CurrY);
                             Console.Write(player);
                        }
                     }
                 }
-                BombCheck(CurrEnemy[i]);
+                BombCheck(e);
                 if (eX == pX && eY == pY)
                 {
                     Player.Health-=1;
-                    CurrEnemy.Remove(CurrEnemy[i]);
+                    CurrEnemy.Remove(e);
                     Player.PlayerStats.Kills_total++;
                 }
             }

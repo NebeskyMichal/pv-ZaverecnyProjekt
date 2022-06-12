@@ -17,6 +17,9 @@
         public PlayerStats()
         {
             Longest_run = 1;
+            Kills_total = 0;
+            Deaths_total = 0;
+            Bombs_placed = 0;
         }
         public PlayerStats(string name, int run, int kill, int death, int bomb)
         {

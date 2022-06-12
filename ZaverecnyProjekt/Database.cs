@@ -18,9 +18,10 @@ namespace ZaverecnyProjekt
             Ini = new IniFile("config.ini");
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            if (Ini.IniReadValue("Database", "connectionString").Length != 0)
+            string iniConnectionString = Ini.IniReadValue("Database", "connectionString");
+            if (iniConnectionString.Length != 0)
             {
-                connectionStringsSection.ConnectionStrings["sqlServer"].ConnectionString = Ini.IniReadValue("Database", "connectionString");
+                connectionStringsSection.ConnectionStrings["sqlServer"].ConnectionString = iniConnectionString;
                 config.Save();
                 ConfigurationManager.RefreshSection("connectionStrings");
             }
@@ -37,7 +38,7 @@ namespace ZaverecnyProjekt
                     {
                         Console.Write("Fix your connection string in config.ini located in .\\ZaverecnyProjekt\\bin\\Debug\\net6.0");
                         Console.ReadLine();
-                        Environment.Exit(75979);
+                        Environment.Exit(404);
                     }
                 }
                 try

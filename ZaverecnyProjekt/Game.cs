@@ -42,10 +42,11 @@ namespace ZaverecnyProjekt
                 Player.PlayerStats = tempData[0];
             }
             Gui.Wave = Player.PlayerStats.Longest_run;
-            Player.Health = Int32.Parse(Ini.IniReadValue("Game", "player_health"));
-            Player.MaxBombs = Int32.Parse(Ini.IniReadValue("Game", "max_bombs"));
-            Gui.PlayerHealth = Player.Health;
-            RestoreHP = Player.Health;
+            int configHealth = Int32.Parse(Ini.IniReadValue("Game", "player_health"));
+            int bombsConfig = Int32.Parse(Ini.IniReadValue("Game", "max_bombs"));
+            Player.MaxBombs = bombsConfig;
+            Gui.PlayerHealth = configHealth;
+            RestoreHP = configHealth;
             Player.Field.MaxEnemy = Gui.Wave * Multiplier;
         }
 
